@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  command-node:
+    build: ./command-node
+    environment:
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    restart: always
+
+  intelligence-worker:
+    build: ./edge-worker
+    environment:
+      - PORT=8001
+      - WORKER_ID=intel-01
+    ports:
+      - "8001:8001"
+    restart: always
+
+  automation-worker:
+    build: ./edge-worker
+    environment:
+      - PORT=8002
+      - WORKER_ID=auto-01
+    ports:
+      - "8002:8002"
+    restart: always
